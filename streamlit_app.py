@@ -15,11 +15,10 @@ st.markdown("Generate concise summaries from long-form text using AI.")
 # Load Model
 @st.cache_resource
 def load_model():
-   return pipeline(
-    "summarization",
-    model="sshleifer/distilbart-cnn-6-6",
-    framework="pt"
-)
+    return pipeline(
+        "summarization",
+        model="t5-small"
+    )
 
 with st.spinner("Loading AI Model..."):
     summarizer = load_model()
@@ -83,12 +82,12 @@ if generate:
             try:
 
                 result = summarizer(
-                    text,
-                    max_length=max_len,
-                    min_length=min_len,
-                    do_sample=False,
-                    truncation=True
-                )
+    "summarize: " + text,
+    max_length=max_len,
+    min_length=min_len,
+    do_sample=False,
+    truncation=True
+)
 
                 summary = result[0]["summary_text"]
 
