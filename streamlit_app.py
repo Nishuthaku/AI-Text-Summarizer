@@ -15,11 +15,10 @@ st.markdown("Generate concise summaries from long-form text using AI.")
 # Load Model
 @st.cache_resource
 def load_model():
-   return pipeline(
-    "summarization",
-    model="sshleifer/distilbart-cnn-6-6",
-    framework="pt"
-)
+    return pipeline(
+        "summarization",
+        model="t5-small"
+    )
 
 with st.spinner("Loading AI Model..."):
     summarizer = load_model()
@@ -65,15 +64,10 @@ col1, col2 = st.columns(2)
 generate = col1.button("Generate Summary")
 clear = col2.button("Clear Text")
 
-# Clear Functionality
-if clear:
-    st.rerun()
-
 # Generate Summary
 if generate:
 
     if not text.strip():
-
         st.warning("⚠ Please enter some text.")
 
     else:
@@ -83,7 +77,7 @@ if generate:
             try:
 
                 result = summarizer(
-                    text,
+                    "summarize: " + text,
                     max_length=max_len,
                     min_length=min_len,
                     do_sample=False,
@@ -93,12 +87,7 @@ if generate:
                 summary = result[0]["summary_text"]
 
                 st.subheader("📄 Summary")
-
                 st.success(summary)
-
-                st.subheader("📋 Copy Summary")
-
-                st.code(summary)
 
                 st.download_button(
                     label="⬇ Download Summary",
@@ -108,11 +97,10 @@ if generate:
                 )
 
             except Exception as e:
-
                 st.error(f"Error: {e}")
 
 # Footer
 st.markdown("---")
 st.markdown(
-    "Built using Python, Streamlit, Hugging Face Transformers, and NLP."
+    "Built using Python, Streamlit and Hugging Face Transformers."
 )
