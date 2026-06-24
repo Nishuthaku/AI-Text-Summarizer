@@ -17,7 +17,7 @@ st.markdown("Generate concise summaries from long-form text using AI.")
 def load_model():
     return pipeline(
         "summarization",
-        model="facebook/bart-large-cnn"
+        model="sshleifer/distilbart-cnn-12-6"
     )
 
 with st.spinner("Loading AI Model..."):
