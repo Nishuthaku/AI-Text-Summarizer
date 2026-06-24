@@ -15,10 +15,11 @@ st.markdown("Generate concise summaries from long-form text using AI.")
 # Load Model
 @st.cache_resource
 def load_model():
-    return pipeline(
-        "summarization",
-        model="sshleifer/distilbart-cnn-12-6"
-    )
+   return pipeline(
+    "summarization",
+    model="sshleifer/distilbart-cnn-6-6",
+    framework="pt"
+)
 
 with st.spinner("Loading AI Model..."):
     summarizer = load_model()
