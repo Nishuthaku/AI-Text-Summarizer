@@ -77,12 +77,21 @@ if generate:
             try:
 
                 result = summarizer(
+<<<<<<< HEAD
                     "summarize: " + text,
                     max_length=max_len,
                     min_length=min_len,
                     do_sample=False,
                     truncation=True
                 )
+=======
+    "summarize: " + text,
+    max_length=max_len,
+    min_length=min_len,
+    do_sample=False,
+    truncation=True
+)
+>>>>>>> 9cd6782db84501e345de29727d73f63eadd285af
 
                 summary = result[0]["summary_text"]
 
@@ -102,5 +111,10 @@ if generate:
 # Footer
 st.markdown("---")
 st.markdown(
+<<<<<<< HEAD
     "Built using Python, Streamlit and Hugging Face Transformers."
 )
+=======
+    "Built using Python, Streamlit, Hugging Face Transformers, and NLP."
+)
+>>>>>>> 9cd6782db84501e345de29727d73f63eadd285af
